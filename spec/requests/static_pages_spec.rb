@@ -71,5 +71,13 @@ describe "Static pages" do
     click_link "sample app"
     page.should have_selector 'title', text: full_title('')
   end
+
+  describe "for non-signed-in users" do
+    let(:user) { FactoryGirl.create(:user) }
+      
+    describe "should not see a delete link" do
+      it { should_not have_link('delete') }
+    end
+  end
 end
 
